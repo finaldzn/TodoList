@@ -48,8 +48,8 @@ public class TodoControllerServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 	protected void   doPost(HttpServletRequest   req,HttpServletResponse   resp)   throws ServletException, IOException 
-	{String content= req.getParameter("content");
-	
+	{
+	String content= req.getParameter("content");
 	Todo todo = new Todo(content);
 	tododbUtil.AddTodo(todo);
 	try {listTodos(req,resp);} 

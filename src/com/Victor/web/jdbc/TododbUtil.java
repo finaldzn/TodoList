@@ -48,14 +48,16 @@ public void AddTodo(Todo todo) {
 	Connection myConn = null;
 	PreparedStatement myStmt = null;
 	ResultSet myRs= null;
-	try {myConn = datasource.getConnection();
-	String sql = "INSERT INTO todos (context) VALUES (?)";
-	myStmt = myConn.prepareStatement(sql);    
-	String content = todo.getContent();    
-	myStmt.setString(1, content);
-	myStmt.execute();} 
-	catch(Exception e){System.out.println(e.getMessage());}
-	finally{close(myConn,myStmt,myRs);}
+	try {
+		myConn = datasource.getConnection();
+		String sql = "INSERT INTO todos (context) VALUES (?)";
+		myStmt = myConn.prepareStatement(sql);    
+		String content = todo.getContent();    
+		myStmt.setString(1, content);
+		myStmt.execute();} 
+		catch(Exception e){System.out.println(e.getMessage());}
+		finally{close(myConn,myStmt,myRs);
+	}
 }
 private void close(Connection myConn, Statement myStmt, ResultSet myRs) {
 	try
@@ -68,7 +70,6 @@ private void close(Connection myConn, Statement myStmt, ResultSet myRs) {
 	{System.out.println(e.getMessage());
 	}
 	}
-
 public Todo fetchtodo(int id) {
 	Connection myConn=null;
 	Statement myStmt = null;
