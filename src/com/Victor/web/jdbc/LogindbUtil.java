@@ -24,7 +24,6 @@ public class LogindbUtil {
 		this.datasource = datasource;
 	}
 	public Boolean tryLogin(Login login) throws Exception {
-		Boolean logged = false;
 		
 		Connection myConn=null;
 		Statement myStmt = null;
@@ -32,20 +31,50 @@ public class LogindbUtil {
 		try {
 			myConn = datasource.getConnection();
 			myStmt= myConn.createStatement();
-			String sql= "select password from users where username='"+login.getUsername()+"'";
+			String sql= "select password from users where username='"+login.getUsername()+"';";
 			myRs = myStmt.executeQuery(sql);
 			myRs.next();
 			String password=myRs.getString("password");
-			System.out.println("Retrieved : " +password + "\nEntered : " + login.getPassword());
 			return (password.equals(login.getPassword()));
 		}
 		catch(Exception e)
 			{
-			System.out.println(e.getMessage());
 			return null;
 			} 
 		finally{close(myConn,myStmt,myRs);}
 		}	
+
+public int retrieveRole(Login login) throws Exception {
+		
+		Connection myConn=null;
+		Statement myStmt = null;
+		ResultSet myRs= null;
+		try {
+			myConn = datasource.getConnection();
+			myStmt= myConn.createStatement();
+			String sql= "select role from users where username='"+login.getUsername()+"' and password='"+login.getPassword()+"';";
+			myRs = myStmt.executeQuery(sql);
+			myRs.next();
+			String role=myRs.getString("role");
+			int retour=-1;
+			if (role.equals("instructor"))
+				{
+				retour= 0;
+				}
+			if (role.equals("student"))
+				{
+				retour= 1;	
+				}
+			return retour;
+		}
+		catch(Exception e)
+			{
+			System.out.println(e.getMessage());
+			return -1;
+			} 
+		finally{close(myConn,myStmt,myRs);}
+		}	// returns 0 for instructor, 1 for student
+	
 	private void close(Connection myConn, Statement myStmt, ResultSet myRs) {
 		try
 		{

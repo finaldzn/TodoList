@@ -45,18 +45,36 @@ public class LoginServlet extends HttpServlet {
 		Boolean logged = false;
 		try {
 			logged = logindbUtil.tryLogin(login);
-			System.out.println(logged);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		if (logged==false)
+		if (logged==null || logged==false)
 		{
 			request.getRequestDispatcher("/login_failed.jsp").forward(request, response);
 		}
 		else
 		{
-		    response.sendRedirect("http://localhost:8080/TodoList/TodoControllerServlet");
+			int role = -1;
+			try {
+				role = logindbUtil.retrieveRole(login);
+			} 
+			catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			if(role==0)
+			{
+			    response.sendRedirect("http://localhost:8080/TodoList/TodoControllerServlet");
+			}
+			else if(role==1)
+			{
+			    response.sendRedirect("http://localhost:8080/TodoList/TodoControllerStudentServlet");
+			}
+			else
+			{
+				System.out.print("CONNECTION FAILED");
+			}
 		}
 	}
 

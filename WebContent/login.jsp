@@ -39,8 +39,5 @@
 		</table>
 	</form>
 </div>
-<div style="clear:both;"></div>
-	<a href="TodoControllerServlet">Back to TODOS</a>
-</div>
 </body>
 </html>
