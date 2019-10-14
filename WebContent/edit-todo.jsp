@@ -4,26 +4,38 @@
 <html>
 <head>
 <meta http-equiv="Content-Type"content="text/html; charset=UTF-8">
-<link type="text/css"rel="stylesheet"href="css/add-student-style.css">
-<link type="text/css" rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 <title>Edit a todo</title>
 </head>
 <body>
 <div id="wrapper">
 <div id="header">
-<h2>ESILV Engineer School</h2>
+<h2>TODOS LIST</h2>
 </div>
-</div><div id="container"><h3> Edit a Todo</h3>
-<form action="editTodo"method="post">
-<table>
-<tbody>
-<tr>
-<td><label>Content: </label>
-</td><td><input type="text"name="content" value="${Todo.content }"/></td>
+</div>
+<h3> Edit a Todo</h3>
 
-<td><input type="submit" value="Save"/></td></tr></tbody>
-</table></form><div style="clear:both;">
-</div><a href="TodoControllerServlet">Back to List</a>
-</div>
+
+<form action="editTodo"method="post">
+<div class="mdl-card mdl-shadow--4dp" style="margin-bottom:20px;">         			
+							<div class="mdl-card__title">					            
+					            <h2 class="mdl-card__title-text">CONTENT</h2>
+					         </div>
+					         <div class="mdl-card__supporting-text">
+					         <textarea class="mdl-textfield__input" name="content" rows = "3"  cols = "80">${Todo.content }</textarea>
+						     </div>				              
+					         <div class="mdl-card__actions">
+					                <input  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" Value="Save"/>
+					         </div>			         
+			          </div>
+		
+</form>
+<footer class="mdl-mini-footer">
+  <div class="mdl-logo" style="clear:both;"></div>
+	<a href="TodoControllerServlet">Back to TODOS</a>
+	
+</footer>
 </body>
 </html>
