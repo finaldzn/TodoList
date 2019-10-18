@@ -30,6 +30,7 @@
 <div id="wrapper">
 	<div id="header">
 	<h2> TODOS LIST </h2>
+	<h3>Welcome ${username}</h3>
 	</div>
 </div>
 <div class="mdl-grid" id="container">
@@ -60,8 +61,11 @@
 					         </div>			         
 			          </div>
 				</c:forEach>
-			</div>
-			</div>
+	</div>
+	<form action="LoginServlet" method="get">
+		<input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type ="submit" value="Logout" style="margin-bottom: 20px;"/>
+	</form>
+</div>
 
 </body>
 </html>

@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,6 +42,16 @@ public class TodoControllerStudentServlet extends HttpServlet {
 	{
 		List<Todo> todos = tododbUtil.getTodos();
 		request.setAttribute("TODOS_LIST", todos);
+		Cookie [] cookies = request.getCookies();
+		if(cookies!= null){
+			for(Cookie cookie:cookies){
+				if(cookie.getName().equals("username"))
+				{
+					System.out.println("Cookie (todos) : " + cookie.getValue());
+					request.setAttribute("username", cookie.getValue());
+				}				
+			}			
+		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-todo-student.jsp");
 		dispatcher.forward(request, response);
 	}
