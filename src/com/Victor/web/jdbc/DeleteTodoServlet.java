@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 /**
@@ -38,6 +39,11 @@ public class DeleteTodoServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		int id = Integer.parseInt(request.getParameter("id"));
+		String role = request.getParameter("role");
+		String username = request.getParameter("username");
+		HttpSession session = request.getSession();
+		session.setAttribute("role", role);
+		session.setAttribute("username", username);
 		tododbutil.deletetodo(id);
 		response.sendRedirect("TodoControllerServlet");
 	}

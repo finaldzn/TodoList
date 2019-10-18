@@ -49,6 +49,7 @@
 			</div>
 <form action="LoginServlet" method="get">
 		<input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type ="submit" value="Logout" style="margin-bottom: 20px;"/>
+		<% session.invalidate(); %>
 </form>
 </div>
 

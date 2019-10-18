@@ -11,6 +11,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 /**
@@ -42,21 +43,23 @@ public class TodoControllerServlet extends HttpServlet {
 		}
 	}
 	private void listTodos(HttpServletRequest request,HttpServletResponse response) throws Exception
-	{
+	{		
 		List<Todo> todos = tododbUtil.getTodos();
 		request.setAttribute("TODOS_LIST", todos);
-		Cookie [] cookies = request.getCookies();
-		if(cookies!= null){
-			for(Cookie cookie:cookies){
-				if(cookie.getName().equals("username"))
-				{
-					System.out.println("Cookie (todos) : " + cookie.getValue());
-					request.setAttribute("username", cookie.getValue());
-				}				
-			}			
+		String role;
+		
+		try { 
+			role = 	String.valueOf(request.getSession().getAttribute("role"));
 		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-todo.jsp");
-		dispatcher.forward(request, response);
+		catch(Exception e)
+		{
+			role = request.getParameter("role");
+		}
+		
+		if (role.equals("instructor")) request.getRequestDispatcher("/list-todo.jsp").forward(request, response);
+		else if (role.equals("student")) request.getRequestDispatcher("/list-todo-student.jsp").forward(request, response);
+		else request.getRequestDispatcher("/login.jsp").forward(request, response);
+		
 	}
 	protected void doPost(HttpServletRequest   req,HttpServletResponse   resp)   throws ServletException, IOException 
 	{

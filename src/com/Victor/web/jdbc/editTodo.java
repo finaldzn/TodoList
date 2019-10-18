@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 /**
@@ -40,6 +41,22 @@ public class editTodo extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		id=Integer.parseInt(request.getParameter("id"));
+		String role="";
+		String username="";
+		
+		try
+		{
+		role = request.getParameter("role");
+		username = request.getParameter("username");
+		}
+		catch(Exception e)
+		{
+			request.getRequestDispatcher("/add-todo.jsp").forward(request,response);
+		}
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("role", role);
+		session.setAttribute("username", username);
 		Todo todo= TodoDbUtil.fetchtodo(id);
 		request.setAttribute("Todo", todo);
 		request.getRequestDispatcher("edit-todo.jsp").forward(request, response);
@@ -49,7 +66,9 @@ public class editTodo extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String content= request.getParameter("content");
+		System.out.println("id"+id);
 		Todo todo = new Todo(id,content);
 		TodoDbUtil.updateTodo(todo);
 		response.sendRedirect("TodoControllerServlet");}

@@ -29,7 +29,7 @@
 	</div>
 </div>
 <div id="container">
-	<h3>Add a Todo</h3>
+	<h3>${sessionScope.username}, add a Todo</h3>
 <form action="TodoControllerServlet" method="post">
 	<div class="mdl-card mdl-shadow--4dp" style="margin-bottom:20px;">         			
 							<div class="mdl-card__title">					            
@@ -42,7 +42,6 @@
 					                <input  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" Value="Save"/>
 					         </div>			         
 			          </div>
-	
 </form>
 </div>
 <footer class="mdl-mini-footer">

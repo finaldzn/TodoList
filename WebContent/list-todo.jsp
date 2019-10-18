@@ -30,22 +30,29 @@
 <div id="wrapper">
 	<div id="header">
 	<h2> TODOS LIST </h2>
-	<h3>Welcome ${username}</h3>
+	<h3>Welcome ${sessionScope.username}</h3>
+						
 	</div>
 </div>
 <div class="mdl-grid" id="container">
 	<div class="mdl-cell mdl-cell--6-col" id="content">
 
-		<form action="AddTodoControllerServlet" method="get">
-		<input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type ="submit" value="Add Todo" style="margin-bottom: 20px;"/>
-		</form>
+		<c:url var = "AddTodosLink" value = "AddTodoControllerServlet">
+		<c:param name="username" value ="${sessionScope.username}"/>
+		<c:param name="role" value ="${sessionScope.role }"/>
+		</c:url>
+		<a href="${AddTodosLink}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Add a todo</a>
             
             <c:forEach var = "todos" items="${TODOS_LIST}">
 					<c:url var="EditLink" value="editTodo">		
 					<c:param name="id" value ="${todos.id}"/>
+					<c:param name="role" value="${sessionScope.role }"/>
+					<c:param name="username" value="${sessionScope.username }"/>
 					</c:url>
 					<c:url var="DeleteLink" value="DeleteTodoServlet">		
 					<c:param name="id" value ="${todos.id}"/>
+					<c:param name="role" value="${sessionScope.role }"/>
+					<c:param name="username" value="${sessionScope.username }"/>
 					</c:url>
 					
 						<div class="mdl-card mdl-shadow--4dp" style="margin-bottom:20px;">         			
@@ -64,6 +71,7 @@
 	</div>
 	<form action="LoginServlet" method="get">
 		<input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type ="submit" value="Logout" style="margin-bottom: 20px;"/>
+		<% session.invalidate(); %>
 	</form>
 </div>
 

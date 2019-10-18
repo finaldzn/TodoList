@@ -15,7 +15,7 @@
 <h2>TODOS LIST</h2>
 </div>
 </div>
-<h3> Edit a Todo</h3>
+<h3>${sessionScope.username}, edit a Todo</h3>
 
 
 <form action="editTodo"method="post">
@@ -34,7 +34,11 @@
 </form>
 <footer class="mdl-mini-footer">
   <div class="mdl-logo" style="clear:both;"></div>
-	<a href="TodoControllerServlet">Back to TODOS</a>
+  <c:url var="TodosLink" value="TodoControllerServlet">		
+	<c:param name="username" value ="${sessionScope.username}"/>
+	<c:param name="role" value ="${sessionScope.role }"/>
+  </c:url>
+	<a href="${TodosLink }">Back to TODOS</a>
 	
 </footer>
 </body>

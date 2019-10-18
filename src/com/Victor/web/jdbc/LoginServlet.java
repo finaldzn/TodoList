@@ -10,6 +10,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 /**
@@ -68,10 +69,11 @@ public class LoginServlet extends HttpServlet {
 		else
 		{
 			Cookie cookie = new Cookie("username",username);
-			cookie.setMaxAge(60);
+			cookie.setMaxAge(60*3);
 			response.addCookie(cookie);
-			cookie.setDomain("http://localhost:8080/TodoList");
 			
+			HttpSession session = request.getSession();
+			session.setAttribute("username", username);
 			
 			int role = -1;
 			try {
@@ -84,15 +86,15 @@ public class LoginServlet extends HttpServlet {
 			
 			if(role==0)
 			{
-				cookie.setPath("/TodoControllerServlet");
-			    response.sendRedirect("http://localhost:8080/TodoList/TodoControllerServlet");
-
+				session.setAttribute("role", "instructor");				
 			}
 			else if(role==1)
 			{
-				cookie.setPath("/TodoControllerStudentServlet");
-			    response.sendRedirect("http://localhost:8080/TodoList/TodoControllerStudentServlet");
+				session.setAttribute("role", "student");
 			}
+			
+		    response.sendRedirect("http://localhost:8080/TodoList/TodoControllerServlet");
+
 		}
 	}
 
