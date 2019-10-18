@@ -6,8 +6,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" rel="stylesheet" href="css/add-student-style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
 <link type="text/css" rel="stylesheet" href="css/style.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<style>
+    #view-source {
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      margin-right: 40px;
+      margin-bottom: 40px;
+      z-index: 900;
+    }
+</style>
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
 <title>Login</title>
 </head>
@@ -21,22 +35,18 @@
 	<h2>Login failed (wrong username/password combination)</h2>
 	<h3> Login </h3>	
 	<form action="LoginServlet" method="post">
-		<table>
-			<tbody>				
-				<tr>
-					<td><label>Username:</label></td>
-					<td><input type="text" name="username"/></td>
-				</tr>
-				<tr>
-					<td><label>Password:</label></td>
-					<td><input type="text" name="password"/></td>
-				</tr>
-				<tr>
-					<td><label></label></td>
-					<td><input type="submit" name="Save" value="Connect"/></td>
-				</tr>
-			</tbody>
-		</table>
+		<div class="mdl-card mdl-shadow--4dp" style="margin-bottom:20px; margin-left:20px;">         			
+							
+					         <div class="mdl-card__supporting-text">
+					         <label>Username:</label>
+					         <input class="mdl-textfield__input" name="username" value = "${username}"/>
+					         <label>Password:</label>
+					         <input class="mdl-textfield__input"  name="password"/>
+						     </div>				              
+					         <div class="mdl-card__actions">
+					                <input  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" name="Save" Value="Connect"/>
+					         </div>			         
+			          </div>
 	</form>
 </div>
 </body>
