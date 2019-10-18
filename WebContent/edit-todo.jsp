@@ -17,6 +17,10 @@
 </div>
 <h3>${sessionScope.username}, edit a Todo</h3>
 
+<form action="LoginServlet" method="get">
+		<input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type ="submit" value="Logout" style="margin-bottom: 20px;"/>
+</form>
+
 
 <form action="editTodo"method="post">
 <div class="mdl-card mdl-shadow--4dp" style="margin-bottom:20px;">         			
@@ -30,6 +34,7 @@
 					                <input  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" Value="Save"/>
 					         </div>			         
 			          </div>
+			          
 		
 </form>
 <footer class="mdl-mini-footer">

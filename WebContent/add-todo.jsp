@@ -28,6 +28,11 @@
 	<h2> TODOS LIST </h2>
 	</div>
 </div>
+
+<form action="LoginServlet" method="get">
+		<input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type ="submit" value="Logout" style="margin-bottom: 20px;"/>
+</form>
+
 <div id="container">
 	<h3>${sessionScope.username}, add a Todo</h3>
 <form action="TodoControllerServlet" method="post">
