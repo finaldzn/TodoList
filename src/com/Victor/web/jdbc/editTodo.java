@@ -68,7 +68,6 @@ public class editTodo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String content= request.getParameter("content");
-		System.out.println("id"+id);
 		Todo todo = new Todo(id,content);
 		TodoDbUtil.updateTodo(todo);
 		response.sendRedirect("TodoControllerServlet");}
